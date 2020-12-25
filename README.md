@@ -1,1 +1,1 @@
-# oraichain-static-files-private
+# oraichain-static-files
