@@ -87,23 +87,8 @@ EOF
 }
 
 getKeyAddr() {
-  expect << EOF
-    set timeout 3
-    spawn oraicli keys show $@ -a
-    expect "Enter keyring passphrase:"
-    send -- "$PASS\r"
-    expect eof
-EOF
-}
-
-getKeyVal() {
-  expect << EOF
-    set timeout 3
-    spawn oraicli keys show $@ -a --bech val
-    expect "Enter keyring passphrase:"
-    send -- "$PASS\r"
-    expect eof
-EOF
+  key=$(getKey $@)
+  echo "$key" | tail -1
 }
 
 # Get a value:
@@ -191,6 +176,22 @@ clear(){
 oraidFn(){
     # oraid start
     orai start --chain-id Oraichain --laddr tcp://0.0.0.0:1317 --node tcp://0.0.0.0:26657 # --trust-node
+}
+
+enterPassPhrase(){
+  expect << EOF
+        spawn $@
+        expect {
+          "*passphrase:" { send -- "$PASS\r" }
+        }
+        expect {
+          "confirm transaction*" {send -- "y\r"}
+        }
+        expect {
+          "*passphrase:" { send -- "$PASS\r" }
+        }
+        expect eof
+EOF
 }
 
 
@@ -351,7 +352,7 @@ createValidatorFn() {
   echo "start creating validator..."
   sleep 10
 
-  oraicli tx staking create-validator --amount $amount --pubkey $pubkey --moniker $moniker --chain-id Oraichain --commission-rate $commissionRate --commission-max-rate $commissionMaxRate --commission-max-change-rate $commissionMaxChangeRate --min-self-delegation $minDelegation --gas $gas --gas-prices $gasPrices --security-contact $securityContract --identity $identity --website $website --details $details --from $user
+  enterPassPhrase oraicli tx staking create-validator --amount $amount --pubkey $pubkey --moniker $moniker --chain-id Oraichain --commission-rate $commissionRate --commission-max-rate $commissionMaxRate --commission-max-change-rate $commissionMaxChangeRate --min-self-delegation $minDelegation --gas $gas --gas-prices $gasPrices --security-contact $securityContract --identity $identity --website $website --details $details --from $user
 
   local reporter="${user}_reporter"
   # # for i in $(eval echo {1..$2})
@@ -372,7 +373,7 @@ createValidatorFn() {
 
   # add validator to websocket config
   echo "get user validator address..."
-  local val_address=$(oraicli keys show $user -a --bech val)
+  local val_address=$(getKeyAddr $user -a --bech val)
   $WEBSOCKET config validator $val_address
 
   # setup broadcast-timeout to websocket config
@@ -398,13 +399,13 @@ createValidatorFn() {
   local reporterAmount=$(getArgument "reporter_amount" $REPORTER_AMOUNT)
 
   echo "collecting user account address from local node..."
-  local user_address=$(oraicli keys show $user -a)
+  local user_address=$(getKeyAddr $user -a)
 
   # send orai tokens to reporters
 
   echo "collecting the reporter's information..."
 
-  oraicli tx send $user_address $($WEBSOCKET keys show $reporter) $reporterAmount --from $user_address --gas-prices $gasPrices
+  enterPassPhrase oraicli tx send $user_address $($WEBSOCKET keys show $reporter) $reporterAmount --from $user_address --gas-prices $gasPrices
 
   echo "start broadcasting the reporter..."
   sleep 10
@@ -412,7 +413,7 @@ createValidatorFn() {
   #wait for sending orai tokens transaction success
 
   # add reporter to oraichain
-  oraicli tx websocket add-reporters $($WEBSOCKET keys list -a) --from $user --gas-prices $gasPrices
+  enterPassPhrase oraicli tx websocket add-reporters $($WEBSOCKET keys list -a) --from $user --gas-prices $gasPrices
   sleep 8
 
   # pkill oraid
