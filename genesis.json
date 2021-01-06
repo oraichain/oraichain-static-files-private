@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2020-12-28T03:52:43.850284469Z",
+  "genesis_time": "2021-01-06T08:56:52.46070467Z",
   "chain_id": "Oraichain",
   "consensus_params": {
     "block": {
@@ -19,185 +19,6 @@
   },
   "app_hash": "",
   "app_state": {
-    "bank": {
-      "send_enabled": true
-    },
-    "slashing": {
-      "params": {
-        "signed_blocks_window": "30000",
-        "min_signed_per_window": "0.050000000000000000",
-        "downtime_jail_duration": "600000000000",
-        "slash_fraction_double_sign": "0.050000000000000000",
-        "slash_fraction_downtime": "0.000100000000000000"
-      },
-      "signing_infos": {},
-      "missed_blocks": {}
-    },
-    "airequest": {
-      "ai_requests": [],
-      "params": {
-        "maximum_request_bytes": "1048576"
-      }
-    },
-    "provider": {
-      "oracle_scripts": [],
-      "datasources": [],
-      "test_cases": [],
-      "params": {
-        "oscript_reward_percentage": "70",
-        "maximum_code_bytes": "1024"
-      }
-    },
-    "supply": {
-      "supply": []
-    },
-    "staking": {
-      "params": {
-        "unbonding_time": "1814400000000000",
-        "max_validators": 100,
-        "max_entries": 7,
-        "historical_entries": 1000,
-        "bond_denom": "orai"
-      },
-      "last_total_power": "0",
-      "last_validator_powers": null,
-      "validators": null,
-      "delegations": null,
-      "unbonding_delegations": null,
-      "redelegations": null,
-      "exported": false
-    },
-    "crisis": {
-      "constant_fee": {
-        "denom": "orai",
-        "amount": "10000000"
-      }
-    },
-    "mint": {
-      "minter": {
-        "inflation": "0.130000000000000000",
-        "annual_provisions": "0.000000000000000000"
-      },
-      "params": {
-        "mint_denom": "orai",
-        "inflation_rate_change": "0.130000000000000000",
-        "inflation_max": "0.200000000000000000",
-        "inflation_min": "0.070000000000000000",
-        "goal_bonded": "0.670000000000000000",
-        "blocks_per_year": "6311200"
-      }
-    },
-    "distribution": {
-      "params": {
-        "community_tax": "0.020000000000000000",
-        "base_proposer_reward": "0.100000000000000000",
-        "bonus_proposer_reward": "0.100000000000000000",
-        "withdraw_addr_enabled": true
-      },
-      "fee_pool": {
-        "community_pool": []
-      },
-      "delegator_withdraw_infos": [],
-      "previous_proposer": "",
-      "outstanding_rewards": [],
-      "validator_accumulated_commissions": [],
-      "validator_historical_rewards": [],
-      "validator_current_rewards": [],
-      "delegator_starting_infos": [],
-      "validator_slash_events": []
-    },
-    "genutil": {
-      "gentxs": [
-        {
-          "type": "cosmos-sdk/StdTx",
-          "value": {
-            "msg": [
-              {
-                "type": "cosmos-sdk/MsgCreateValidator",
-                "value": {
-                  "description": {
-                    "moniker": "duc_Oraichain_13289",
-                    "identity": "",
-                    "website": "",
-                    "security_contact": "",
-                    "details": ""
-                  },
-                  "commission": {
-                    "rate": "0.100000000000000000",
-                    "max_rate": "0.200000000000000000",
-                    "max_change_rate": "0.010000000000000000"
-                  },
-                  "min_self_delegation": "100",
-                  "delegator_address": "orai1w42ezxq54pz9hjlfskjqpwu6wk5k3pk4swpd0z",
-                  "validator_address": "oraivaloper1w42ezxq54pz9hjlfskjqpwu6wk5k3pk4ey6yy9",
-                  "pubkey": "oraivalconspub1addwnpepqfm8zxyk94hk3d6ngm00e4lcuf4pj0shq8sufwvyc2nrwd9v4s8vuvn899w",
-                  "value": {
-                    "denom": "orai",
-                    "amount": "900000000000"
-                  }
-                }
-              }
-            ],
-            "fee": {
-              "amount": [],
-              "gas": "200000"
-            },
-            "signatures": [
-              {
-                "pub_key": {
-                  "type": "tendermint/PubKeySecp256k1",
-                  "value": "AzIgqXVnBYfsU7xa6D1XmlKm4Dhg256WNXw6JKx1ezF3"
-                },
-                "signature": "UovB79MHz0AbFTFwOVPhROSnQe3HJ7ZtYV0e5Jakyzg0Mg8o9hGJFAc7XvpX6o8VshEV2KO7aD6r1BcjJvm1qA=="
-              }
-            ],
-            "memo": "e14d4e6315e35034aa04d5f4cb360eacec18375b@172.19.0.2:26656"
-          }
-        }
-      ]
-    },
-    "websocket": {
-      "validator_report": [],
-      "validator_reporter": []
-    },
-    "auth": {
-      "params": {
-        "max_memo_characters": "256",
-        "tx_sig_limit": "7",
-        "tx_size_cost_per_byte": "5",
-        "sig_verify_cost_ed25519": "590",
-        "sig_verify_cost_secp256k1": "1000"
-      },
-      "accounts": [
-        {
-          "type": "cosmos-sdk/Account",
-          "value": {
-            "address": "orai1w42ezxq54pz9hjlfskjqpwu6wk5k3pk4swpd0z",
-            "coins": [
-              {
-                "denom": "orai",
-                "amount": "9000000000000000"
-              }
-            ],
-            "public_key": null,
-            "account_number": "0",
-            "sequence": "0"
-          }
-        }
-      ]
-    },
-    "evidence": {
-      "params": {
-        "max_evidence_age": "120000000000"
-      },
-      "evidence": []
-    },
-    "airesult": {
-      "ai_results": [],
-      "params": {
-        "expiration_count": "10"
-      }
-    },
     "gov": {
       "starting_proposal_id": "1",
       "deposits": null,
@@ -220,6 +41,184 @@
         "threshold": "0.500000000000000000",
         "veto": "0.334000000000000000"
       }
+    },
+    "supply": {
+      "supply": []
+    },
+    "airesult": {
+      "ai_results": [],
+      "params": {
+        "expiration_count": "10"
+      }
+    },
+    "websocket": {
+      "validator_report": [],
+      "validator_reporter": []
+    },
+    "mint": {
+      "minter": {
+        "inflation": "0.130000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "orai",
+        "inflation_rate_change": "0.130000000000000000",
+        "inflation_max": "0.200000000000000000",
+        "inflation_min": "0.070000000000000000",
+        "goal_bonded": "0.670000000000000000",
+        "blocks_per_year": "6311200"
+      }
+    },
+    "bank": {
+      "send_enabled": true
+    },
+    "distribution": {
+      "params": {
+        "community_tax": "0.020000000000000000",
+        "base_proposer_reward": "0.100000000000000000",
+        "bonus_proposer_reward": "0.100000000000000000",
+        "withdraw_addr_enabled": true
+      },
+      "fee_pool": {
+        "community_pool": []
+      },
+      "delegator_withdraw_infos": [],
+      "previous_proposer": "",
+      "outstanding_rewards": [],
+      "validator_accumulated_commissions": [],
+      "validator_historical_rewards": [],
+      "validator_current_rewards": [],
+      "delegator_starting_infos": [],
+      "validator_slash_events": []
+    },
+    "slashing": {
+      "params": {
+        "signed_blocks_window": "30000",
+        "min_signed_per_window": "0.050000000000000000",
+        "downtime_jail_duration": "600000000000",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.000100000000000000"
+      },
+      "signing_infos": {},
+      "missed_blocks": {}
+    },
+    "genutil": {
+      "gentxs": [
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "ducphamle",
+                    "identity": "",
+                    "website": "",
+                    "security_contact": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.200000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "100",
+                  "delegator_address": "orai1ztn27z6grm7x8wkp4znmp8q3jfszuu8m3awnyj",
+                  "validator_address": "oraivaloper1ztn27z6grm7x8wkp4znmp8q3jfszuu8mch4604",
+                  "pubkey": "oraivalconspub1addwnpepqfls9rwe6zvjf9z54ef5ml9wpash73c474tncr8apzf73ystvt4kv7qwmfq",
+                  "value": {
+                    "denom": "orai",
+                    "amount": "900000000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "A9bPV2Vdvb/v1820wSckZeWuL50wy3iLULlRPPeCdI2v"
+                },
+                "signature": "YgNZmiblOeugbdKLOxeNebUFRPswJBDfK+7/4zBfGyAjS7DS0ySy3M51TmZ1EfqNdpT8tSxI6l+sWAURVHayCA=="
+              }
+            ],
+            "memo": "9161b6d70ea8d4b4e8e180b1d19f15a1b53cba4e@172.19.0.2:26656"
+          }
+        }
+      ]
+    },
+    "crisis": {
+      "constant_fee": {
+        "denom": "orai",
+        "amount": "10000000"
+      }
+    },
+    "provider": {
+      "oracle_scripts": [],
+      "datasources": [],
+      "test_cases": [],
+      "params": {
+        "oscript_reward_percentage": "70"
+      }
+    },
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400000000000",
+        "max_validators": 100,
+        "max_entries": 7,
+        "historical_entries": 1000,
+        "bond_denom": "orai"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": null,
+      "validators": null,
+      "delegations": null,
+      "unbonding_delegations": null,
+      "redelegations": null,
+      "exported": false
+    },
+    "evidence": {
+      "params": {
+        "max_evidence_age": "120000000000"
+      },
+      "evidence": []
+    },
+    "airequest": {
+      "ai_requests": [],
+      "params": {
+        "maximum_request_bytes": "1024"
+      }
+    },
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "5",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000"
+      },
+      "accounts": [
+        {
+          "type": "cosmos-sdk/Account",
+          "value": {
+            "address": "orai1ztn27z6grm7x8wkp4znmp8q3jfszuu8m3awnyj",
+            "coins": [
+              {
+                "denom": "orai",
+                "amount": "9000000000000000"
+              }
+            ],
+            "public_key": null,
+            "account_number": "0",
+            "sequence": "0"
+          }
+        }
+      ]
     }
   }
 }
