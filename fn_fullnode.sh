@@ -476,6 +476,9 @@ case "${METHOD}" in
   initScript)
     initScriptFn
   ;;
+  createValidator)
+    createValidatorFn
+  ;;
   sign)
     signFn
   ;;
