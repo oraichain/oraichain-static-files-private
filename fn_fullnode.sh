@@ -166,42 +166,45 @@ oraidFn(){
 
 
 initFn(){
-  clear    
-  oraid init $MONIKER --chain-id Oraichain
-  res=$?        
-  verifyResult $res "can not run oraid init"  
+  ### Check if a directory does not exist ###
+  if [[ ! -d "$PWD/.oraid/" || ! -d "$PWD/.oraicli/" ]] 
+  then  
+    oraid init $MONIKER --chain-id Oraichain
+    res=$?        
+    verifyResult $res "can not run oraid init"  
 
-  # Configure your CLI to eliminate need to declare them as flags
-  oraicli config chain-id Oraichain
-  oraicli config output json
-  oraicli config indent true
-  oraicli config trust-node true
-  oraicli config keyring-backend test
+    # Configure your CLI to eliminate need to declare them as flags
+    oraicli config chain-id Oraichain
+    oraicli config output json
+    oraicli config indent true
+    oraicli config trust-node true
+    oraicli config keyring-backend test
 
-  oraicli keys add $USER
-  res=$?        
-  verifyResult $res "can not add $USER"
+    oraicli keys add $USER
+    res=$?        
+    verifyResult $res "can not add $USER"
 
-  # download genesis json file
-  
-  curl $GENESIS_URL > .oraid/config/genesis.json
+    # download genesis json file
+    
+    curl $GENESIS_URL > .oraid/config/genesis.json
 
-  res=$?        
-  verifyResult $res "can not downlodad genesis file $GENESIS_URL"
+    res=$?        
+    verifyResult $res "can not downlodad genesis file $GENESIS_URL"
 
-  # rm -f .oraid/config/genesis.json && wget https://raw.githubusercontent.com/oraichain/oraichain-static-files/ducphamle2-test/genesis.json -q -P .oraid/config/
+    # rm -f .oraid/config/genesis.json && wget https://raw.githubusercontent.com/oraichain/oraichain-static-files/ducphamle2-test/genesis.json -q -P .oraid/config/
 
-  # add persistent peers to listen to blocks
-  local persistentPeers=$(getArgument "persistent_peers" "$PERSISTENT_PEERS")
-    [ ! -z $persistentPeers ] && sed -i 's/persistent_peers *= *".*"/persistent_peers = "'"$persistentPeers"'"/g' .oraid/config/config.toml 
+    # add persistent peers to listen to blocks
+    local persistentPeers=$(getArgument "persistent_peers" "$PERSISTENT_PEERS")
+        [ ! -z $persistentPeers ] && sed -i 's/persistent_peers *= *".*"/persistent_peers = "'"$persistentPeers"'"/g' .oraid/config/config.toml 
 
-  res=$?        
-  verifyResult $res "can not edit the persistent peer value $persistentPeers"
+    res=$?        
+    verifyResult $res "can not edit the persistent peer value $persistentPeers"
 
-  oraid validate-genesis
+    oraid validate-genesis
 
-  # run at background without websocket
-  oraid start --minimum-gas-prices $GAS_PRICES
+    # run at background without websocket
+    oraid start --minimum-gas-prices $GAS_PRICES
+  fi
 }
 
 createValidatorFn() {
