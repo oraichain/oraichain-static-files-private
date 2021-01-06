@@ -285,7 +285,7 @@ createValidatorFn() {
 
   # add validator to websocket config
   echo "get user validator address..."
-  local val_address=$(getKeyAddr $user -a --bech val)
+  local val_address=$(oraicli keys show $user -a --bech val)
   $WEBSOCKET config validator $val_address
 
   # setup broadcast-timeout to websocket config
@@ -311,7 +311,7 @@ createValidatorFn() {
   local reporterAmount=$(getArgument "reporter_amount" $REPORTER_AMOUNT)
 
   echo "collecting user account address from local node..."
-  local user_address=$(getKeyAddr $user -a)
+  local user_address=$(oraicli keys show $user -a)
 
   # send orai tokens to reporters
 
