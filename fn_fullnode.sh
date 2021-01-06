@@ -264,7 +264,7 @@ createValidatorFn() {
   echo "start creating validator..."
   sleep 10
 
-  enterPassPhrase oraicli tx staking create-validator --amount $amount --pubkey $pubkey --moniker $moniker --chain-id Oraichain --commission-rate $commissionRate --commission-max-rate $commissionMaxRate --commission-max-change-rate $commissionMaxChangeRate --min-self-delegation $minDelegation --gas $gas --gas-prices $gasPrices --security-contact $securityContract --identity $identity --website $website --details $details --from $user
+  echo "y" | oraicli tx staking create-validator --amount $amount --pubkey $pubkey --moniker $moniker --chain-id Oraichain --commission-rate $commissionRate --commission-max-rate $commissionMaxRate --commission-max-change-rate $commissionMaxChangeRate --min-self-delegation $minDelegation --gas $gas --gas-prices $gasPrices --security-contact $securityContract --identity $identity --website $website --details $details --from $user
 
   local reporter="${user}_reporter"
   # # for i in $(eval echo {1..$2})
@@ -317,7 +317,7 @@ createValidatorFn() {
 
   echo "collecting the reporter's information..."
 
-  enterPassPhrase oraicli tx send $user_address $($WEBSOCKET keys show $reporter) $reporterAmount --from $user_address --gas-prices $gasPrices
+  echo "y" | oraicli tx send $user_address $($WEBSOCKET keys show $reporter) $reporterAmount --from $user_address --gas-prices $gasPrices
 
   echo "start broadcasting the reporter..."
   sleep 10
@@ -325,7 +325,7 @@ createValidatorFn() {
   #wait for sending orai tokens transaction success
 
   # add reporter to oraichain
-  enterPassPhrase oraicli tx websocket add-reporters $($WEBSOCKET keys list -a) --from $user --gas-prices $gasPrices
+  echo "y" | oraicli tx websocket add-reporters $($WEBSOCKET keys list -a) --from $user --gas-prices $gasPrices
   sleep 8
 
   # pkill oraid
